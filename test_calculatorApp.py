@@ -12,91 +12,81 @@ class TestCalculate(unittest.TestCase):
         # self.MockClass1 = self.patcher1.start()
         # self.addCleanup(self.patcher1.stop)
     
-    # CheckUserInput()
-    def test_IfUserInputEmpty(self):
+    # CheckUserInput
+    def test_InputEmpty(self):
         self.assertRaises(ValueError, check_user_input,"")
 
-    def test_IfUserInputInt(self):
+    def test_InputInt(self):
         self.assertEqual(check_user_input("1"), 1)
 
-    def test_IfUserInputFloat(self):
+    def test_InputFloat(self):
         self.assertEqual(check_user_input("1.1"), 1.1)
 
-    def test_IfUserInputNotNum(self):
-        self.assertRaises(ValueError, check_user_input,"NaN")
+    def test_InputNotNum(self):
+        self.assertRaises(ValueError, check_user_input,"x")
 
-    # Add()
-    def test_IfAdded(self):
+
+    # Add
+    def test_Added(self):
         self.assertEqual(add(1,2),3)
         
-    # Subtract() 
-    def test_IfSubtracted(self):
+
+    # Subtract 
+    def test_Subtracted(self):
         self.assertEqual(subtract(3,2),1)
-    # Multiply()
-    def test_IfMultiplied(self):
+
+
+    # Multiply
+    def test_Multiplied(self):
         self.assertEqual(multiply(3,2),6)
 
-    # Divide()
-    def test_IfDenominatorZero(self):
+
+    # Divide
+    def test_DenominatorZero(self):
         self.assertRaises(ZeroDivisionError, divide, 1, 0)
     
-    def test_IfNumeratorZero(self):
+    def test_NumeratorZero(self):
         self.assertEqual(divide(0,2),0)
 
-    def test_IfDividedZero(self):
+    def test_Divided(self):
         self.assertEqual(divide(6,2),3)
     
 
-    
-
-
-    def test_AddPass(self):
-        self.assertEqual(add(6,3), 9)# will execute the add
-        self.assertEqual(calculate('1',6,3), 5) # will call the mock
-
-    def test_AddInvalid(self):
-        self.assertNotEqual(calculate('1',9,3), 9)
-
-    def test_DividByZerrorEx1(self):
-        with self.assertRaises(ValueError):
-             calculate('4','3','w')
-    
-    ##OR
-
-    def test_DividByZerrorEx2(self):
-        self.assertRaises(ValueError, calculate, '4','3','w') 
-
-    def test_DividByZerrorRegex(self):
-        with self.assertRaisesRegex(ValueError, "input is not a number!"):
-             calculate('4','3','w')
-
-    
-    def test_AddPassWithMockEx1(self):
-        with mock.patch('calculatorApp.add', return_value = 6):
-            result = calculate('1',2,4)
-        self.assertEqual(result, 6)
-
-    @mock.patch('calculatorApp.add', return_value = 4)
-    def test_AddPassWithMockEx2(self, mock_check):
-        result = calculate('1',3,2)
-        self.assertEqual(result, 4)
-
-
-    def test_AddPassWithMocEx3(self):
-        assert calculatorApp.add is self.MockClass1
-        self.assertEqual(calculate('1',2,6), 5)
+    # Calculate
+    def test_InputNotNone(self):
+        self.assertRaises(ValueError, calculate, '1',None,1) 
+        self.assertRaises(ValueError, calculate, '1',1,None)
         
+    def test_InvalidInputChoice(self):
+        self.assertRaises(Exception, calculate, '5',1,1)
+
+    def test_AddChoice(self):
+        with mock.patch('calculatorApp.add', return_value = 3):
+            result = calculate('1',1,2)
+        self.assertEqual(result, 3)
+
+    def test_SubtractChoice(self):
+        with mock.patch('calculatorApp.subtract', return_value = 1):
+            result = calculate('2',3,2)
+        self.assertEqual(result, 1)
+    
+    def test_MultiplyChoice(self):
+        with mock.patch('calculatorApp.multiply', return_value = 6):
+            result = calculate('3',2,3)
+        self.assertEqual(result, (2, '*', 3, '=', 6))
+    
+    def test_DivideChoice(self):
+        with mock.patch('calculatorApp.divide', return_value = 3):
+            result = calculate('4',6,2)
+        self.assertEqual(result, (6, '/', 2, '=', 3))
+
+    def test_DenominatorZeroInDivideChoice(self):
+        self.assertRaises(ZeroDivisionError, calculate, '4',1,0) 
 
 
     def tearDown(self):
         print("tearDown .. ")
         #self.patcher1.stop()#or add this and remove self.addCleanup(self.patcher1.stop) in startup but this is not recommened!
-
-
-class TestCalculateWithoutMock(unittest.TestCase):
-    def test_AddPass(self):
-        self.assertEqual(add(6,3), 9)
-        self.assertEqual(calculate('1',6,3), 9)
 
 if __name__ == '__main__':
 	unittest.main()
