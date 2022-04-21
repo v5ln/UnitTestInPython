@@ -28,6 +28,12 @@ class TestCalculate(unittest.TestCase):
     # Add()
     def test_IfAdded(self):
         self.assertEqual(add(1,2),3)
+        
+    # Subtract() 
+    def test_IfSubtracted(self):
+        self.assertEqual(add(3,2),1)
+
+    
 
     
 
