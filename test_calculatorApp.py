@@ -25,6 +25,10 @@ class TestCalculate(unittest.TestCase):
     def test_IfUserInputNotNum(self):
         self.assertRaises(ValueError, check_user_input,"NaN")
 
+    # Add()
+    def test_IfAdded(self):
+        self.assertEqual(add(1,2),3)
+
     
 
 
