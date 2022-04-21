@@ -8,9 +8,25 @@ import calculatorApp
 class TestCalculate(unittest.TestCase):
     def setUp(self):
         print("Setup .. ")
-        self.patcher1 = patch('calculatorApp.add', return_value = 5)
-        self.MockClass1 = self.patcher1.start()
-        self.addCleanup(self.patcher1.stop)
+        # self.patcher1 = patch('calculatorApp.add', return_value = 5)
+        # self.MockClass1 = self.patcher1.start()
+        # self.addCleanup(self.patcher1.stop)
+    
+    # CheckUserInput()
+    def test_IfUserInputEmpty(self):
+        self.assertRaises(ValueError, check_user_input,"")
+
+    def test_IfUserInputInt(self):
+        self.assertEqual(check_user_input("1"), 1)
+
+    def test_IfUserInputFloat(self):
+        self.assertEqual(check_user_input("1.1"), 1.1)
+
+    def test_IfUserInputNotNum(self):
+        self.assertRaises(ValueError, check_user_input,"NaN")
+
+    
+
 
     def test_AddPass(self):
         self.assertEqual(add(6,3), 9)# will execute the add
