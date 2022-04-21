@@ -31,7 +31,7 @@ class TestCalculate(unittest.TestCase):
         
     # Subtract() 
     def test_IfSubtracted(self):
-        self.assertEqual(add(3,2),1)
+        self.assertEqual(subtract(3,2),1)
 
     
 
