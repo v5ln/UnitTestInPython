@@ -32,10 +32,19 @@ class TestCalculate(unittest.TestCase):
     # Subtract() 
     def test_IfSubtracted(self):
         self.assertEqual(subtract(3,2),1)
-        
     # Multiply()
     def test_IfMultiplied(self):
         self.assertEqual(multiply(3,2),6)
+
+    # Divide()
+    def test_IfDenominatorZero(self):
+        self.assertRaises(ZeroDivisionError, divide, 1, 0)
+    
+    def test_IfNumeratorZero(self):
+        self.assertEqual(divide(0,2),0)
+
+    def test_IfDividedZero(self):
+        self.assertEqual(divide(6,2),3)
     
 
     
