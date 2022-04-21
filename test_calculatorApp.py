@@ -32,7 +32,10 @@ class TestCalculate(unittest.TestCase):
     # Subtract() 
     def test_IfSubtracted(self):
         self.assertEqual(subtract(3,2),1)
-
+        
+    # Multiply()
+    def test_IfMultiplied(self):
+        self.assertEqual(multiply(3,2),6)
     
 
     
