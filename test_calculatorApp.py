@@ -1,3 +1,4 @@
+from ast import Num
 import unittest
 from unittest import mock
 from unittest.mock import patch
@@ -81,9 +82,21 @@ class TestCalculate(unittest.TestCase):
         self.assertEqual(result, (6, '/', 2, '=', 3))
 
     def test_DenominatorZeroInDivideChoice(self):
-        self.assertRaises(ZeroDivisionError, calculate, '4',1,0) 
+        self.assertRaises(ZeroDivisionError, calculate, '4','1','0')
+        self.assertRaises(ZeroDivisionError, calculate, '4',1,0)
 
 
+    #isExit 
+    def test_ExitChoiceNo(self):
+        self.assertEqual(isExit("no"),True)
+
+    def test_ExitChoiceYes(self):
+        self.assertEqual(isExit("yes"),False)
+
+    def test_InvalidInputChoiceInExit(self):
+        self.assertRaises(ValueError, isExit,'Yes')
+
+        
     def tearDown(self):
         print("tearDown .. ")
         #self.patcher1.stop()#or add this and remove self.addCleanup(self.patcher1.stop) in startup but this is not recommened!
