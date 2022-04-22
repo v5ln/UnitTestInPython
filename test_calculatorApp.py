@@ -88,10 +88,10 @@ class TestCalculate(unittest.TestCase):
 
     #isExit 
     def test_ExitChoiceNo(self):
-        self.assertEqual(isExit("no"),True)
+        self.assertTrue(isExit("no"))
 
     def test_ExitChoiceYes(self):
-        self.assertEqual(isExit("yes"),False)
+        self.assertFalse(isExit("yes"))
 
     def test_InvalidInputChoiceInExit(self):
         self.assertRaises(ValueError, isExit,'Yes')
