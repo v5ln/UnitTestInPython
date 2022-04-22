@@ -1,5 +1,5 @@
 # Testing in Python: Unit Tests
-## Flow graph analysis (CFG
+## Flow graph analysis (CFG)
 ### Check User Input Graph
 ![CheckUserInput](images/CheckUserInput.jpg)
 ### Add Graph
