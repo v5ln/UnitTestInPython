@@ -57,6 +57,7 @@
 | Start => next_calculation == "no" ? True => return true => End                                            	| next_calculation  = "no"  	| True       	| Visible             	|
 | Start => next_calculation == "no" ? False => next_calculation == "yes" ? True => return false => End      	| next_calculation  = "yes" 	| False      	| Visible             	|
 | Start => next_calculation == "no" ? False => next_calculation == "yes" ? False => raise ValueError => End 	| next_calculation  = "Yes" 	| ValueError 	| Visible             	|
+## The minimal number of paths that achieve 100% code statement coverage is 20
 ## Reports
 ### Code Coverage Report
 ![Report](images/Report.png)
